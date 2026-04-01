@@ -1,4 +1,4 @@
---[[
+--[[iniu
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
@@ -845,6 +845,15 @@ require('lazy').setup({
     priority = 998,
   },
   {
+    'nasccped/rustheme.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- This will now find YOUR file in ~/.config/nvim/colors/ first
+      vim.cmd 'colorscheme rustheme'
+    end,
+  },
+  {
     'webhooked/kanso.nvim',
     lazy = false,
     priority = 999,
@@ -1034,3 +1043,4 @@ vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle file ex
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
