@@ -393,14 +393,29 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          file_ignore_patterns = {
+            'node_modules',
+            'target/', -- Crucial for Rust!
+            '.git/',
+            '%.pdb', -- Windows debug files
+            '%.exe',
+          },
+          path_display = { 'filename_first' },
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--trim', -- This specifically helps speed up rendering
+          },
+        },
         pickers = {
           find_files = {
-            hidden = true,
+            find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
           },
         },
         extensions = {
@@ -615,9 +630,7 @@ require('lazy').setup({
         rust_analyzer = {
           settings = {
             ['rust-analyzer'] = {
-              checkOnSave = {
-                command = 'clippy', -- The 2026 standard for high-quality Rust code
-              },
+              checkOnSave = true,
               hover = {
                 documentation = { enable = false },
               },
@@ -825,6 +838,11 @@ require('lazy').setup({
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
     },
+  },
+  {
+    'shaunsingh/nord.nvim',
+    lazy = false,
+    priority = 998,
   },
   {
     'webhooked/kanso.nvim',
