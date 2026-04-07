@@ -416,6 +416,7 @@ require('lazy').setup({
         pickers = {
           find_files = {
             find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
+            hidden = true,
           },
         },
         extensions = {
@@ -854,6 +855,15 @@ require('lazy').setup({
     end,
   },
   {
+    'pawelgrzybek/oktheme.nvim',
+    lazy = false,
+    priority = 1000,
+  },
+  {
+    'f-person/git-blame.nvim',
+    lazy = false,
+  },
+  {
     'webhooked/kanso.nvim',
     lazy = false,
     priority = 999,
@@ -865,8 +875,11 @@ require('lazy').setup({
     name = 'catppuccin',
     priority = 1000,
     config = function()
+      require('catppuccin').setup {
+        transparent_background = true,
+      }
       -- You can choose from 'catppuccin-latte', 'catppuccin-frappe', 'catppuccin-macchiato', 'catppuccin-mocha'
-      --      vim.cmd.colorscheme 'catppuccin-mocha'
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
   {
